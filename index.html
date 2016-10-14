@@ -86,6 +86,7 @@
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setClearColor(0xeeeeee);
 				container.appendChild( renderer.domElement );
 
 				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
@@ -126,6 +127,15 @@
 
 			function render() {
 
+				var r = Date.now() * 0.0005;
+				
+				
+				camera.fov = 35 + 30 * Math.sin( 0.5 * r );
+				// camera.far = jus.position.length();	
+				camera.updateProjectionMatrix();
+	
+
+
 				camera.position.x = 100;//+= ( mouseX - camera.position.x ) * .05;
 				// camera.position.y += ( - mouseY - camera.position.y ) * .05;
 
@@ -134,6 +144,10 @@
 				camera.lookAt( scene.position );
 
 				renderer.render( scene, camera );
+
+
+
+
 
 			}
 
